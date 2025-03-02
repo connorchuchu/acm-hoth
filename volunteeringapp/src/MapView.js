@@ -1,5 +1,7 @@
+
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+<<<<<<< HEAD
 import L from "leaflet";
 import { useNavigate } from "react-router-dom";
 import { useOpportunities } from "./OpportunityContext";
@@ -7,11 +9,14 @@ import { useOpportunities } from "./OpportunityContext";
 function MapView() {
   const { opportunities } = useOpportunities();
   const navigate = useNavigate();
+=======
+>>>>>>> parent of dcf8d0f (map and list stuff)
 
   return (
     <MapContainer center={[34.0522, -118.2437]} zoom={10} style={{ height: "500px", width: "100%" }}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
+<<<<<<< HEAD
       {opportunities.map((opportunity) => {
         const customIcon = L.divIcon({
           className: "custom-marker",
@@ -40,8 +45,16 @@ function MapView() {
           </Marker>
         );
       })}
+=======
+      {opportunities.map((opportunity) => (
+        <Marker key={opportunity.id} position={[opportunity.lat, opportunity.lng]}>
+          <Popup>{opportunity.title}</Popup>
+        </Marker>
+      ))}
+>>>>>>> parent of dcf8d0f (map and list stuff)
     </MapContainer>
   );
 }
 
 export default MapView;
+    
