@@ -1,16 +1,16 @@
 import { useState } from "react";
-import MapView from "./map"; // Ensure this file exists
-import "./App.css";
-
-// Dummy data for opportunities
-const opportunities = [
-  { id: 1, title: "Park Cleanup", location: "Central Park", date: "March 10" },
-  { id: 2, title: "Food Drive", location: "Local Shelter", date: "March 12" },
-  { id: 3, title: "Beach Cleanup", location: "Santa Monica", date: "March 15" },
-];
+import MapView from "./MapView";
+import ListView from "./ListView";
 
 function App() {
   const [view, setView] = useState("list");
+
+  // Shared state for opportunities
+  const [opportunities, setOpportunities] = useState([
+    { id: 1, title: "Food Bank Help", lat: 34.0522, lng: -118.2437 },
+    { id: 2, title: "Beach Cleanup", lat: 33.9416, lng: -118.4085 },
+    { id: 3, title: "Community Garden", lat: 34.0194, lng: -118.4912 }
+  ]);
 
   return (
     <div>
@@ -19,34 +19,9 @@ function App() {
       </button>
 
       {view === "list" ? (
-        <div style={{ padding: "20px", maxWidth: "400px", margin: "auto" }}>
-          <h2>Nearby Volunteering Opportunities</h2>
-          <div
-            style={{
-              height: "300px",
-              overflowY: "scroll",
-              border: "1px solid #ccc",
-              padding: "10px",
-            }}
-          >
-            {opportunities.map((opportunity) => (
-              <div
-                key={opportunity.id}
-                style={{
-                  marginBottom: "10px",
-                  padding: "10px",
-                  border: "1px solid #ddd",
-                }}
-              >
-                <h3>{opportunity.title}</h3>
-                <p>Location: {opportunity.location}</p>
-                <p>Date: {opportunity.date}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ListView opportunities={opportunities} setOpportunities={setOpportunities} />
       ) : (
-        <MapView />
+        <MapView opportunities={opportunities} />
       )}
     </div>
   );
