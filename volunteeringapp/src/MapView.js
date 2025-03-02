@@ -1,60 +1,67 @@
+import { useState } from "react";
+import MapView from "./MapView";
+import ListView from "./ListView";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-<<<<<<< HEAD
-import L from "leaflet";
-import { useNavigate } from "react-router-dom";
-import { useOpportunities } from "./OpportunityContext";
+function App() {
+  const [view, setView] = useState("list");
 
-function MapView() {
-  const { opportunities } = useOpportunities();
-  const navigate = useNavigate();
-=======
->>>>>>> parent of dcf8d0f (map and list stuff)
+  // Shared state for opportunities
+  const [opportunities, setOpportunities] = useState([
+    { id: 1, title: "Food Bank Help Needed", location: "Downtown LA", date: "2025-03-05", lat: 34.0522, lng: -118.2437 },
+    { id: 2, title: "Beach Cleanup", location: "Santa Monica Beach", date: "2025-03-12", lat: 34.0194, lng: -118.4912 },
+    { id: 3, title: "Community Garden", location: "Culver City", date: "2025-03-17", lat: 34.0219, lng: -118.3965 }
+  ]);
+
+  // Form state
+  const [newOpportunity, setNewOpportunity] = useState({
+    title: "",
+    location: "",
+    date: "",
+    lat: "",
+    lng: ""
+  });
+
+  // Handle form input change
+  const handleChange = (e) => {
+    setNewOpportunity({ ...newOpportunity, [e.target.name]: e.target.value });
+  };
+
+  // Handle adding new opportunity
+  const handleAddOpportunity = () => {
+    if (!newOpportunity.title || !newOpportunity.location || !newOpportunity.date || !newOpportunity.lat || !newOpportunity.lng) {
+      alert("Please fill in all fields!");
+      return;
+    }
+
+    setOpportunities([...opportunities, { ...newOpportunity, id: opportunities.length + 1 }]);
+    setNewOpportunity({ title: "", location: "", date: "", lat: "", lng: "" });
+  };
 
   return (
-    <MapContainer center={[34.0522, -118.2437]} zoom={10} style={{ height: "500px", width: "100%" }}>
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+    <div>
+      <button onClick={() => setView(view === "list" ? "map" : "list")}>
+        {view === "list" ? "Switch to Map View" : "Switch to List View"}
+      </button>
 
-<<<<<<< HEAD
-      {opportunities.map((opportunity) => {
-        const customIcon = L.divIcon({
-          className: "custom-marker",
-          html: `<div style="
-            background-color: white;
-            padding: 8px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-            cursor: pointer;
-          ">${opportunity.title}</div>`,
-          iconSize: [100, 40]
-        });
+      {/* Input Form for New Opportunity */}
+      <div style={{ padding: "20px" }}>
+        <h3>Add New Opportunity</h3>
+        <input type="text" name="title" placeholder="Title" value={newOpportunity.title} onChange={handleChange} />
+        <input type="text" name="location" placeholder="Location Name" value={newOpportunity.location} onChange={handleChange} />
+        <input type="date" name="date" value={newOpportunity.date} onChange={handleChange} />
+        <input type="text" name="lat" placeholder="Latitude" value={newOpportunity.lat} onChange={handleChange} />
+        <input type="text" name="lng" placeholder="Longitude" value={newOpportunity.lng} onChange={handleChange} />
+        <button onClick={handleAddOpportunity}>Add Opportunity</button>
+      </div>
 
-        return (
-          <Marker key={opportunity.id} position={[opportunity.lat, opportunity.lng]} icon={customIcon}>
-            <Popup>
-              <strong>{opportunity.title}</strong>
-              <br />
-              {opportunity.location} - {opportunity.date}
-              <br />
-              <button onClick={() => navigate(`/details/${opportunity.id}`)}>View Details</button>
-            </Popup>
-          </Marker>
-        );
-      })}
-=======
-      {opportunities.map((opportunity) => (
-        <Marker key={opportunity.id} position={[opportunity.lat, opportunity.lng]}>
-          <Popup>{opportunity.title}</Popup>
-        </Marker>
-      ))}
->>>>>>> parent of dcf8d0f (map and list stuff)
-    </MapContainer>
+      {/* Render ListView or MapView */}
+      {view === "list" ? (
+        <ListView opportunities={opportunities} />
+      ) : (
+        <MapView opportunities={opportunities} />
+      )}
+    </div>
   );
 }
 
-export default MapView;
-    
+export default App;

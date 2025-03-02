@@ -38,7 +38,7 @@ function App() {
   return (
     <Router>
       <div>
-        <nav>
+        <nav style={{ textAlign: "center", padding: "10px" }}>
           <Link to="/"><button>Home</button></Link>
           <Link to="/profile"><button>View Profile</button></Link>
           <Link to="/friends"><button>Friends</button></Link>
@@ -47,7 +47,7 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <button onClick={() => setView(view === "list" ? "map" : "list")}>
+              <button onClick={() => setView(view === "list" ? "map" : "list")}> 
                 {view === "list" ? "Switch to Map View" : "Switch to List View"}
               </button>
               <div style={{ padding: "20px" }}>
@@ -66,8 +66,8 @@ function App() {
               )}
             </>
           } />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/friends" element={<Friends />} />
+          <Route path="/profile" element={<div style={{ textAlign: "center", padding: "20px" }}><Profile /></div>} />
+          <Route path="/friends" element={<div style={{ textAlign: "center", padding: "20px" }}><Friends /></div>} />
         </Routes>
       </div>
     </Router>
