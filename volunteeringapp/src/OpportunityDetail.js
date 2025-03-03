@@ -14,7 +14,7 @@ function OpportunityDetail({ opportunities }) {
       <p><strong>Location:</strong> {opportunity.location}</p>
       <p><strong>Date:</strong> {opportunity.date}</p>
       <p><strong>Description:</strong> {opportunity.description || "No description available."}</p>
-      {opportunity.image && <img src={opportunity.image} alt={opportunity.title} style={{ width: "100%", borderRadius: "10px" }} />}
+      {opportunity.image && <img src={opportunity.image} alt={opportunity.title} style={{ width: "100%", height:"100%", borderRadius: "10px" }} />}
     </div>
   );
 }
