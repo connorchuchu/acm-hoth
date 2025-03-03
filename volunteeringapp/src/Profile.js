@@ -6,7 +6,7 @@ import ecoWarrior from "./assets/ecowarrior.png"
 
 function Profile() {
   const friendsCount = 27; // Replace this with dynamic data if needed
-
+  const pointsCount = 2383;
   return (
     
     <div className="profile-container">
@@ -16,9 +16,12 @@ function Profile() {
       <br />
         <h1 className="profile-name">Brandon Lim</h1>
         <h2 className="profile-username">@brandonnnlimmm</h2>
+        <p className="points-count" style={{ fontSize: "25px", color: "#0096FF", marginTop: "5px" }}>
+          {pointsCount} {pointsCount === 1 ? "Point" : "Points"}</p>
         <p className="friends-count" style={{ fontSize: "16px", color: "#ffffff", marginTop: "5px" }}>
-          {friendsCount} {friendsCount === 1 ? "Friend" : "Friends"}
-        </p>
+          {friendsCount} {friendsCount === 1 ? "Friend" : "Friends"} </p>
+          
+        
       </div>
       <div className="profile-details">
         <h3>About Me</h3>

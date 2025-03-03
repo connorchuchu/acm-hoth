@@ -9,7 +9,10 @@ import Friends from "./Friends";
 import "./ListView.css";
 import foodbank from "./assets/foodbank.png";
 import beach from "./assets/beachcleanup.jpg";
-import garden from "./assets/garden.jpg"
+import garden from "./assets/garden.jpg";
+import shelter from "./assets/shelter.jpg";
+import park from "./assets/park.jpg";
+import library from "./assets/library.jpg";
 
 // If using a locally stored image inside src/assets/
 const navButtonStyle = {
@@ -39,8 +42,11 @@ function App() {
   const [view, setView] = useState("list");
   const [opportunities, setOpportunities] = useState([
     { id: 1, title: "Food Bank Help Needed", image: foodbank, location: "Downtown LA", date: "2025-03-05", lat: 34.0522, lng: -118.2437, description: "Help distribute food to those in need.", points: "34", },
-    { id: 2, title: "Beach Cleanup", image: beach, location: "Santa Monica Beach", date: "2025-03-12", lat: 34.0194, lng: -118.4912, description: "Join us in cleaning up Santa Monica Beach!", points: "25"},
-    { id: 3, title: "Community Garden", image: garden, location: "Culver City", date: "2025-03-17", lat: 34.0219, lng: -118.3965, description: "Help maintain a community garden.", points:"12"}
+    { id: 2, title: "Beach Cleanup", image: beach, location: "Santa Monica Beach", date: "2025-03-12", lat: 34.0194, lng: -118.4912, description: "Join us in cleaning up Santa Monica Beach!", points: "25" },
+    { id: 3, title: "Community Garden", image: garden, location: "Culver City", date: "2025-03-17", lat: 34.0219, lng: -118.3965, description: "Help maintain a community garden.", points: "12" },
+    { id: 4, title: "Homeless Shelter Assistance", image: shelter, location: "Skid Row, LA", date: "2025-03-08", lat: 34.0449, lng: -118.2426, description: "Assist in meal prep and support services for those in need.", points: "30" }, 
+    { id: 5, title: "Park Restoration", image: park, location: "Echo Park", date: "2025-03-15", lat: 34.0766, lng: -118.2606, description: "Help clean and restore Echo Park for the community.", points: "20" }, 
+    { id: 6, title: "Library Book Drive", image: library, location: "Los Angeles Public Library", date: "2025-03-22", lat: 34.0505, lng: -118.2551, description: "Sort and distribute books for local schools and communities.", points: "15" }
   ]);
 
   const addOpportunity = (newOpportunity) => {
