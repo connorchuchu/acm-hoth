@@ -4,6 +4,8 @@ import MapView from "./MapView";
 import ListView from "./ListView";
 import OpportunityDetail from "./OpportunityDetail";
 import CreateOpportunity from "./CreateOpportunity";
+import Profile from "./Profile";
+import Friends from "./Friends";
 
 function App() {
   const [view, setView] = useState("list");
@@ -38,8 +40,15 @@ function AppContent({ view, setView, opportunities, addOpportunity }) {
 
   return (
     <div style={{ padding: "20px" }}>
+      {/* Navigation Buttons */}
+      <nav style={{ textAlign: "center", padding: "10px" }}>
+        <Link to="/"><button>Home</button></Link>
+        <Link to="/profile"><button>View Profile</button></Link>
+        <Link to="/friends"><button>Friends</button></Link>
+      </nav>
+
       {/* Button Row for View Toggle & Create */}
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+      <div style={{ display: "flex", gap: "10px", marginBottom: "20px", justifyContent: "center" }}>
         <button 
           onClick={handleToggleView} 
           style={{ padding: "10px", backgroundColor: "#008CBA", color: "white", border: "none", cursor: "pointer", borderRadius: "5px" }}
@@ -59,6 +68,8 @@ function AppContent({ view, setView, opportunities, addOpportunity }) {
         <Route path="/" element={view === "list" ? <ListView opportunities={opportunities} /> : <MapView opportunities={opportunities} />} />
         <Route path="/opportunity/:id" element={<OpportunityDetail opportunities={opportunities} />} />
         <Route path="/create" element={<CreateOpportunity addOpportunity={addOpportunity} />} />
+        <Route path="/profile" element={<div style={{ textAlign: "center", padding: "20px" }}><Profile /></div>} />
+        <Route path="/friends" element={<div style={{ textAlign: "center", padding: "20px" }}><Friends /></div>} />
       </Routes>
     </div>
   );
