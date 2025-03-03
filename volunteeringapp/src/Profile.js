@@ -22,7 +22,11 @@ function Profile() {
       </div>
       <div className="profile-details">
         <h3>About Me</h3>
-        <p>This is where you can add some personal information about yourself.</p>
+        <p>Hi everyone i’m brandon lim and i’m from LA. i’m 100% committed to ucla and i’ll be majoring in math of comp
+
+i love spending time w my friends, playing soccer, doing puzzles (i.e. nyt games or just general brain teasers), watching sports, and am open to trying new things
+i listen to sza, w2e, stayc, uzi, future, etc. i’m pretty easygoing and can entertain any convo and would love to meet new people and get to know u guys
+</p>
         
         <h3>Badges</h3>
         <div className="badges-container" style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
